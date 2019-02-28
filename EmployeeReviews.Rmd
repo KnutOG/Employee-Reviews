@@ -11,5 +11,8 @@ data <- read.csv("employee_reviews.csv")
 #editcheck
 
 ```{r}
-
+str(data)
 ```
+
+
+#Check2
