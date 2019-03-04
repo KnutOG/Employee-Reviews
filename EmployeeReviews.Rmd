@@ -50,6 +50,7 @@ employee_reviews$`senior-mangemnet-stars` <- as.numeric(employee_reviews$`senior
 ```{r}
 library(mice)
 md.pattern(employee_reviews)
+
 #THe matrix gives us a good understanding on how the NA values are distrbuted in the data. 
 # For example we know that 6693 rows are missing the star rating. The overall rating are complete. 
 
@@ -60,8 +61,11 @@ md.pattern(employee_reviews)
 DataTest <- employee_reviews%>% 
       select(X1,company,`work-balance-stars`,`culture-values-stars`, `carrer-opportunities-stars`, `comp-benefit-stars`, `senior-mangemnet-stars`)
 DataTest2 <- complete(mice(DataTest,m=10,maxit=50,meth='norm',seed=500))
+str(DataTest2)
+is.na(DataTest2)
+md.pattern(DataTest2)
+DataTest3 <- complete(mice(DataTest,m=10,maxit=50,meth='ppm',seed=500))
 
-##Im having problem with the mice function! Intially I left the variables as character and the NA were still there. Now I changed to numeric and now I get an error. Its driving me crazy
 ```
 
 
