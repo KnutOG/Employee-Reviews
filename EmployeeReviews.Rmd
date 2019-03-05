@@ -38,7 +38,7 @@ employee_reviews<- employee_reviews%>%
   mutate (`advice-to-mgmt` = ifelse(`advice-to-mgmt` %in% none, NA, `advice-to-mgmt`))
 ```
 
-Changing all the rating varaibles from chr to Numeric
+Changing all the rating varaibles from chr to Numeric --> this ceorces NAs and problems with Mice package 
 ```{r}
 employee_reviews$`work-balance-stars` <- as.numeric(employee_reviews$`work-balance-stars`)
 employee_reviews$`culture-values-stars` <- as.numeric(employee_reviews$`culture-values-stars`)
@@ -61,14 +61,16 @@ md.pattern(employee_reviews)
 #Selecting variables for "DataTest"
 DataTest <- employee_reviews%>% 
       select(X1,company,`work-balance-stars`,`culture-values-stars`, `carrer-opportunities-stars`, `comp-benefit-stars`, `senior-mangemnet-stars`)
-
+str(DataTest)
 #imputation by Bayesian linear regression
 DataTest2 <- complete(mice(DataTest,m=10,maxit=50,meth='norm',seed=500))
 md.pattern(DataTest2)
+str(DataTest2)
 
 #imputation by predictive mean matching
-DataTest3 <- complete(mice(DataTest,m=10,maxit=50,meth='ppm',seed=500))
+DataTest3 <- complete(mice(DataTest,m=10,maxit=50,meth='pmm',seed=500))
 md.pattern(DataTest3)
+
 
 ```
 
