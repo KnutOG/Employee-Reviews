@@ -10,7 +10,7 @@ library(readr)
 employee_reviews <- read_csv("employee_reviews.csv")
 ```
 
-Changing the job title columns into 2 different columns Employee Status and Position
+# Changing the job title columns into 2 different columns Employee Status and Position
 ```{r}
 library(tidyr)
 library(dplyr)
@@ -18,7 +18,7 @@ employee_reviews<- employee_reviews %>% separate (`job-title`, c("Employee Statu
 employee_reviews$`Employee Status` <- as.factor(employee_reviews$`Employee Status`)
 ```
 
-Changing the none value with an NA value to be able to run the mice function
+# Changing the none value with an NA value to be able to run the mice function
 ```{r}
 none <- c("none")
 ```
@@ -38,7 +38,7 @@ employee_reviews<- employee_reviews%>%
   mutate (`advice-to-mgmt` = ifelse(`advice-to-mgmt` %in% none, NA, `advice-to-mgmt`))
 ```
 
-Changing all the rating varaibles from chr to Numeric --> this ceorces NAs and problems with Mice package 
+# Changing all the rating varaibles from chr to Numeric --> this ceorces NAs and problems with Mice package 
 ```{r}
 employee_reviews$`work-balance-stars` <- as.numeric(employee_reviews$`work-balance-stars`)
 employee_reviews$`culture-values-stars` <- as.numeric(employee_reviews$`culture-values-stars`)
