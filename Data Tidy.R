@@ -10,8 +10,6 @@ employee_reviews<- employee_reviews %>% separate (`job-title`, c("Employee Statu
 employee_reviews$`Employee Status` <- as.factor(employee_reviews$`Employee Status`)
 
 ##Changing the none value with an NA value to be able to run the mice function
-
-
 none <- c("none")
 
 employee_reviews<- employee_reviews%>% 
@@ -26,6 +24,7 @@ employee_reviews<- employee_reviews%>%
   mutate (`senior-mangemnet-stars` = ifelse(`senior-mangemnet-stars` %in% none, NA, `senior-mangemnet-stars`))
 employee_reviews<- employee_reviews%>%
   mutate (`advice-to-mgmt` = ifelse(`advice-to-mgmt` %in% none, NA, `advice-to-mgmt`))
+
 #Changing all the rating varaibles from chr to Numeric
 employee_reviews$`work-balance-stars` <- as.numeric(employee_reviews$`work-balance-stars`)
 employee_reviews$`culture-values-stars` <- as.numeric(employee_reviews$`culture-values-stars`)
