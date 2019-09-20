@@ -5,6 +5,8 @@ date: "2/28/2019"
 output: html_document
 ---
 
+testing commit september 20th
+
 ```{r Setup}
 library(readr)
 employee_reviews <- read_csv("employee_reviews.csv")
